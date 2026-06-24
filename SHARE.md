@@ -14,7 +14,7 @@ Then share:
 Luisa, here is your career direction workspace:
 https://jinmi.tech/luisa-career-direction/
 
-Use the mentor PIN if you need to update the planning workspace.
+Use the PIN if you need to update the planning workspace.
 PIN: 2468
 ```
 
@@ -49,4 +49,3 @@ Upload the contents of this project folder into it, including:
 - `data/`
 
 The shared online data file is created automatically after the first online save.
-

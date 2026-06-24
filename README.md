@@ -4,15 +4,15 @@ Mobile-first career mentoring portal for Luisa with a Hostinger-friendly PHP bac
 
 ## Files
 
-- `index.html` - public portal and hidden mentor dashboard markup
+- `index.html` - public welcome page and hidden private workspace markup
 - `styles.css` - custom responsive styling
 - `app.js` - career card expansion, progress tracker, PIN login, and shared save logic
 - `api/` - PHP endpoints for PIN authentication and shared state saving
 - `data/` - JSON state storage for Hostinger shared hosting
 
-## Mentor Dashboard
+## Private Workspace
 
-The private mentor side includes:
+The private workspace includes:
 
 - Wednesday baseline conversation frame
 - Route ranking and route decision selector
@@ -23,7 +23,7 @@ The private mentor side includes:
 - STAR evidence bank
 - Application tracker
 - Weekly review tracker
-- Mentor notes
+- Planning notes
 
 ## Local Preview
 
@@ -39,7 +39,7 @@ Then open:
 http://127.0.0.1:5050
 ```
 
-## Mentor Access
+## Private Access
 
 Default PIN:
 
@@ -55,8 +55,8 @@ For local static preview without PHP, the app falls back to local browser-only s
 
 When uploaded to Hostinger with PHP enabled:
 
-- The mentor dashboard unlocks through `api/auth.php`.
-- Editable fields, progress checkboxes, application rows, weekly reviews, STAR notes, and mentor notes save through `api/state.php`.
+- The private workspace unlocks through `api/auth.php`.
+- Editable fields, progress checkboxes, application rows, weekly reviews, STAR notes, and planning notes save through `api/state.php`.
 - Shared data is stored in `data/luisa-career-state.json`, created automatically on first online save.
 - `data/.htaccess` blocks direct web access to the JSON file on Apache/Hostinger.
 - If the backend is unavailable, the app still works locally with `localStorage`, but changes will not be shared across devices.
@@ -100,6 +100,6 @@ The portal uses `localStorage` as an offline fallback for:
 - Interview preparation
 - Application tracker
 - Weekly reviews
-- Mentor notes
+- Planning notes
 
 Use the browser's site data controls to reset saved local data.
