@@ -1,15 +1,25 @@
 (function () {
   "use strict";
 
-  const FALLBACK_PINS = ["2468", "1357"];
+  // No fallback PINs. If backend is unavailable, workspace stays locked.
   const STORAGE_PREFIX = "luisaCareerPortal.";
   const API_STATE_URL = "api/state.php";
   const API_AUTH_URL = "api/auth.php";
-  const saveStatus = document.querySelector("[data-save-status]");
+  const API_DASHBOARD_URL = "api/dashboard.php";
+
+  // Rate limiting: 5 attempts then 60-second lockout.
+  const MAX_ATTEMPTS = 5;
+  const LOCKOUT_MS = 60000;
+  let attemptCount = 0;
+  let lockedUntil = 0;
 
   let backendAvailable = false;
   let remoteAuthenticated = false;
+  let remoteUpdatedAt = null;
   let remoteSaveTimer = 0;
+  let saveStatus = null; // set after dashboard is injected
+
+  // ── Utilities ──────────────────────────────────────────────
 
   function storageKey(name) {
     return name.startsWith(STORAGE_PREFIX) ? name : `${STORAGE_PREFIX}${name}`;
@@ -33,7 +43,7 @@
     saveStatus.textContent = message || (remoteAuthenticated ? "Saved online." : "Saved locally.");
     window.clearTimeout(flashSaved.timer);
     flashSaved.timer = window.setTimeout(() => {
-      saveStatus.textContent = "";
+      if (saveStatus) saveStatus.textContent = "";
     }, 1800);
   }
 
@@ -53,6 +63,20 @@
     return { ok: response.ok, status: response.status, data };
   }
 
+  async function fetchText(url, options) {
+    const response = await fetch(url, {
+      credentials: "same-origin",
+      ...options,
+    });
+    return {
+      ok: response.ok,
+      status: response.status,
+      text: await response.text(),
+    };
+  }
+
+  // ── Navigation ─────────────────────────────────────────────
+
   const menuToggle = document.querySelector(".menu-toggle");
   const navLinks = document.querySelectorAll(".primary-nav a");
 
@@ -68,111 +92,80 @@
     });
   });
 
-  const directionCards = Array.from(document.querySelectorAll(".direction-card"));
-  const expandAllButton = document.querySelector("[data-expand-all]");
+  // ── Dashboard injection ────────────────────────────────────
 
-  function setDirectionOpen(card, open) {
-    const trigger = card.querySelector(".direction-trigger");
-    const body = card.querySelector(".direction-body");
-    card.classList.toggle("is-open", open);
-    trigger?.setAttribute("aria-expanded", String(open));
-    if (body) body.hidden = !open;
+  const mentorZone = document.querySelector(".mentor-zone");
+  const loginPanel = document.querySelector("[data-login-panel]");
+  const dashboardMount = document.getElementById("dashboard-mount");
+
+  async function injectDashboard() {
+    if (!dashboardMount || dashboardMount.dataset.injected) return;
+    const result = await fetchText(API_DASHBOARD_URL, { method: "GET" });
+    if (!result.ok) {
+      remoteAuthenticated = false;
+      throw new Error("Could not load the private workspace.");
+    }
+    dashboardMount.innerHTML = result.text;
+    dashboardMount.dataset.injected = "true";
+    // Re-query elements that now exist in the DOM
+    saveStatus = dashboardMount.querySelector("[data-save-status]");
+    bindDashboard();
   }
 
-  directionCards.forEach((card) => {
-    const trigger = card.querySelector(".direction-trigger");
-    trigger?.addEventListener("click", () => {
-      const isOpen = trigger.getAttribute("aria-expanded") === "true";
-      setDirectionOpen(card, !isOpen);
-    });
-  });
+  async function setDashboardVisible(visible) {
+    if (visible) await injectDashboard();
+    if (dashboardMount) dashboardMount.hidden = !visible;
+    if (loginPanel) loginPanel.hidden = visible;
+    mentorZone?.classList.toggle("dashboard-unlocked", visible);
+  }
 
-  expandAllButton?.addEventListener("click", () => {
-    const shouldExpand = directionCards.some((card) => !card.classList.contains("is-open"));
-    directionCards.forEach((card) => setDirectionOpen(card, shouldExpand));
-    expandAllButton.textContent = shouldExpand ? "Collapse all" : "Expand all";
-  });
+  // ── State management ───────────────────────────────────────
 
-  const progressInputs = Array.from(document.querySelectorAll("[data-progress-list] input"));
-  const progressPercent = document.querySelector("[data-progress-percent]");
-  const progressBar = document.querySelector("[data-progress-bar]");
+  function getProgressInputs() {
+    return Array.from(dashboardMount?.querySelectorAll("[data-progress-list] input") || []);
+  }
+
+  function getStoredFields() {
+    return Array.from(dashboardMount?.querySelectorAll("[data-store]") || []);
+  }
+
+  function getApplicationRows() {
+    return Array.from(dashboardMount?.querySelectorAll("[data-application-row]") || []);
+  }
+
   const progressKey = storageKey("progress");
-  const storedProgress = readJSON(progressKey, {});
-
-  function serializeProgress() {
-    return progressInputs.reduce((acc, input) => {
-      acc[input.value] = input.checked;
-      return acc;
-    }, {});
-  }
+  const applicationKey = storageKey("applications");
 
   function updateProgress() {
+    const inputs = getProgressInputs();
+    const progressPercent = dashboardMount?.querySelector("[data-progress-percent]");
+    const progressBar = dashboardMount?.querySelector("[data-progress-bar]");
     let completed = 0;
 
-    progressInputs.forEach((input) => {
+    inputs.forEach((input) => {
       const isComplete = Boolean(input.checked);
       input.closest(".week-item")?.classList.toggle("is-complete", isComplete);
       if (isComplete) completed += 1;
     });
 
-    const percentage = progressInputs.length ? Math.round((completed / progressInputs.length) * 100) : 0;
+    const percentage = inputs.length ? Math.round((completed / inputs.length) * 100) : 0;
     if (progressPercent) progressPercent.textContent = `${percentage}%`;
     if (progressBar) progressBar.style.width = `${percentage}%`;
   }
 
-  progressInputs.forEach((input) => {
-    input.checked = Boolean(storedProgress[input.value]);
-    input.addEventListener("change", () => {
-      persistState("Progress saved.");
-    });
-  });
-  updateProgress();
-
-  const pinForm = document.querySelector("[data-pin-form]");
-  const pinStatus = document.querySelector("[data-pin-status]");
-  const loginPanel = document.querySelector("[data-login-panel]");
-  const dashboard = document.querySelector("[data-dashboard]");
-  const mentorZone = document.querySelector(".mentor-zone");
-  const lockDashboard = document.querySelector("[data-lock-dashboard]");
-
-  function setDashboardVisible(visible) {
-    if (dashboard) dashboard.hidden = !visible;
-    if (loginPanel) loginPanel.hidden = visible;
-    mentorZone?.classList.toggle("dashboard-unlocked", visible);
-    sessionStorage.setItem(storageKey("mentorUnlocked"), String(visible));
+  function serializeProgress() {
+    return getProgressInputs().reduce((acc, input) => {
+      acc[input.value] = input.checked;
+      return acc;
+    }, {});
   }
-
-  if (sessionStorage.getItem(storageKey("mentorUnlocked")) === "true") {
-    setDashboardVisible(true);
-  }
-
-  const storedFields = Array.from(document.querySelectorAll("[data-store]"));
-
-  storedFields.forEach((field) => {
-    const key = field.getAttribute("data-store");
-    if (!key) return;
-    const saved = localStorage.getItem(key);
-    if (saved !== null) field.value = saved;
-
-    field.addEventListener("input", () => {
-      persistState();
-    });
-
-    field.addEventListener("change", () => {
-      persistState();
-    });
-  });
-
-  const applicationKey = storageKey("applications");
-  const applicationRows = Array.from(document.querySelectorAll("[data-application-row]"));
-  const savedApplications = readJSON(applicationKey, null);
 
   function getApplicationFields(row) {
     return Array.from(row.querySelectorAll("input, select"));
   }
 
   function serializeApplications() {
-    return applicationRows.map((row) => {
+    return getApplicationRows().map((row) => {
       const [role, organisation, status, nextStep] = getApplicationFields(row);
       return {
         role: role?.value || "",
@@ -185,7 +178,7 @@
 
   function applyApplications(applications) {
     if (!Array.isArray(applications)) return;
-    applicationRows.forEach((row, index) => {
+    getApplicationRows().forEach((row, index) => {
       const data = applications[index];
       if (!data) return;
       const [role, organisation, status, nextStep] = getApplicationFields(row);
@@ -196,23 +189,8 @@
     });
   }
 
-  if (Array.isArray(savedApplications)) {
-    applyApplications(savedApplications);
-  }
-
-  applicationRows.forEach((row) => {
-    getApplicationFields(row).forEach((field) => {
-      field.addEventListener("input", () => {
-        persistState("Application tracker saved.");
-      });
-      field.addEventListener("change", () => {
-        persistState("Application tracker saved.");
-      });
-    });
-  });
-
   function collectStoredFields() {
-    return storedFields.reduce((acc, field) => {
+    return getStoredFields().reduce((acc, field) => {
       const key = field.getAttribute("data-store");
       if (key) acc[key] = field.value;
       return acc;
@@ -237,15 +215,16 @@
 
   function applyState(state) {
     if (!state || typeof state !== "object") return;
+    remoteUpdatedAt = state.updatedAt || remoteUpdatedAt;
 
     const progress = state.progress || {};
-    progressInputs.forEach((input) => {
+    getProgressInputs().forEach((input) => {
       input.checked = Boolean(progress[input.value]);
     });
     updateProgress();
 
     Object.entries(state.fields || {}).forEach(([key, value]) => {
-      const field = storedFields.find((item) => item.getAttribute("data-store") === key);
+      const field = getStoredFields().find((item) => item.getAttribute("data-store") === key);
       if (field) field.value = value;
     });
 
@@ -275,12 +254,20 @@
       try {
         const result = await fetchJSON(API_STATE_URL, {
           method: "POST",
-          body: JSON.stringify({ state }),
+          body: JSON.stringify({ state, expectedUpdatedAt: remoteUpdatedAt }),
         });
+        if (result.status === 409 && result.data?.state) {
+          applyState(result.data.state);
+          flashSaved("Online data changed. Reloaded latest.");
+          return;
+        }
         if (!result.ok) {
           remoteAuthenticated = false;
           flashSaved("Online save failed. Saved locally.");
           return;
+        }
+        if (result.data?.state?.updatedAt) {
+          remoteUpdatedAt = result.data.state.updatedAt;
         }
         flashSaved("Saved online.");
       } catch {
@@ -288,6 +275,65 @@
       }
     }, 450);
   }
+
+  // ── Bind dashboard interactivity after injection ───────────
+
+  function bindDashboard() {
+    // Stored fields
+    getStoredFields().forEach((field) => {
+      const key = field.getAttribute("data-store");
+      if (!key) return;
+      const saved = localStorage.getItem(key);
+      if (saved !== null) field.value = saved;
+      field.addEventListener("input", () => persistState());
+      field.addEventListener("change", () => persistState());
+    });
+
+    // Progress inputs
+    const storedProgress = readJSON(progressKey, {});
+    getProgressInputs().forEach((input) => {
+      input.checked = Boolean(storedProgress[input.value]);
+      input.addEventListener("change", () => persistState("Progress saved."));
+    });
+    updateProgress();
+
+    // Applications
+    const savedApplications = readJSON(applicationKey, null);
+    if (Array.isArray(savedApplications)) applyApplications(savedApplications);
+    getApplicationRows().forEach((row) => {
+      getApplicationFields(row).forEach((field) => {
+        field.addEventListener("input", () => persistState("Application tracker saved."));
+        field.addEventListener("change", () => persistState("Application tracker saved."));
+      });
+    });
+
+    // Lock button
+    const lockBtn = dashboardMount?.querySelector("[data-lock-dashboard]");
+    lockBtn?.addEventListener("click", async () => {
+      remoteAuthenticated = false;
+      remoteUpdatedAt = null;
+      await setDashboardVisible(false);
+      loginPanel?.scrollIntoView({ behavior: "smooth", block: "start" });
+      // Reset rate limit on explicit lock
+      attemptCount = 0;
+      lockedUntil = 0;
+
+      if (!backendAvailable) return;
+      try {
+        await fetchJSON(API_AUTH_URL, {
+          method: "POST",
+          body: JSON.stringify({ action: "logout" }),
+        });
+      } catch {
+        // Local lock has already happened.
+      }
+    });
+  }
+
+  // ── PIN form & rate limiting ───────────────────────────────
+
+  const pinForm = document.querySelector("[data-pin-form]");
+  const pinStatus = document.querySelector("[data-pin-status]");
 
   async function authenticateOnline(pin) {
     const result = await fetchJSON(API_AUTH_URL, {
@@ -297,7 +343,7 @@
 
     if (result.status === 404 || !result.data) {
       backendAvailable = false;
-      throw new Error("Backend unavailable.");
+      throw new Error("Backend unavailable. Workspace cannot be opened.");
     }
 
     backendAvailable = true;
@@ -309,18 +355,29 @@
     remoteAuthenticated = true;
     const remoteState = result.data.state;
 
+    await setDashboardVisible(true);
     if (hasRemoteData(remoteState)) {
       applyState(remoteState);
     } else {
       persistState("Connected. Local changes saved online.");
     }
 
-    setDashboardVisible(true);
-    dashboard?.scrollIntoView({ behavior: "smooth", block: "start" });
+    dashboardMount?.scrollIntoView({ behavior: "smooth", block: "start" });
   }
 
   pinForm?.addEventListener("submit", async (event) => {
     event.preventDefault();
+
+    const now = Date.now();
+
+    // Enforce lockout
+    if (now < lockedUntil) {
+      const remaining = Math.ceil((lockedUntil - now) / 1000);
+      pinStatus.textContent = `Too many attempts. Wait ${remaining} seconds.`;
+      pinStatus.classList.add("error");
+      return;
+    }
+
     const form = new FormData(pinForm);
     const pin = String(form.get("pin") || "").trim();
 
@@ -329,49 +386,44 @@
 
     try {
       await authenticateOnline(pin);
+      // Successful auth resets counter
+      attemptCount = 0;
+      lockedUntil = 0;
       return;
     } catch (error) {
       if (backendAvailable) {
+        // Count this as a failed attempt only when backend responded
+        attemptCount += 1;
+        if (attemptCount >= MAX_ATTEMPTS) {
+          lockedUntil = Date.now() + LOCKOUT_MS;
+          attemptCount = 0;
+          pinStatus.textContent = "Too many incorrect attempts. Locked for 60 seconds.";
+          pinStatus.classList.add("error");
+          return;
+        }
         pinStatus.textContent = error.message || "Incorrect PIN. Try again.";
         pinStatus.classList.add("error");
         return;
       }
-    }
 
-    if (FALLBACK_PINS.includes(pin)) {
-      setDashboardVisible(true);
-      dashboard?.scrollIntoView({ behavior: "smooth", block: "start" });
-      flashSaved("Backend unavailable. Saved locally on this browser.");
-      return;
-    }
-
-    pinStatus.textContent = "Incorrect PIN. Try again.";
-    pinStatus.classList.add("error");
-  });
-
-  lockDashboard?.addEventListener("click", async () => {
-    remoteAuthenticated = false;
-    setDashboardVisible(false);
-    loginPanel?.scrollIntoView({ behavior: "smooth", block: "start" });
-
-    if (!backendAvailable) return;
-    try {
-      await fetchJSON(API_AUTH_URL, {
-        method: "POST",
-        body: JSON.stringify({ action: "logout" }),
-      });
-    } catch {
-      // Local lock has already happened.
+      // Backend unavailable: stay locked, no fallback
+      pinStatus.textContent = "Workspace is offline. Try again later.";
+      pinStatus.classList.add("error");
     }
   });
+
+  // ── Bootstrap: verify server session on load ───────────────
+  // No sessionStorage auto-unlock. Server is the only source of truth.
 
   async function bootstrapRemoteState() {
     try {
       const result = await fetchJSON(API_STATE_URL, { method: "GET" });
+
       if (result.status === 401) {
         backendAvailable = true;
         remoteAuthenticated = false;
-        setDashboardVisible(false);
+        remoteUpdatedAt = null;
+        // Default locked — do nothing
         return;
       }
 
@@ -381,13 +433,15 @@
       remoteAuthenticated = Boolean(result.data.authenticated);
 
       if (remoteAuthenticated) {
+        await setDashboardVisible(true);
         applyState(result.data.state);
-        setDashboardVisible(true);
         flashSaved("Connected to shared online data.");
       }
     } catch {
       backendAvailable = false;
       remoteAuthenticated = false;
+      remoteUpdatedAt = null;
+      // Stays locked
     }
   }
 

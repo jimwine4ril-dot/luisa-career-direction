@@ -17,6 +17,22 @@ if ($_SERVER['REQUEST_METHOD'] === 'GET') {
 if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     $input = luisa_json_input();
     $state = isset($input['state']) && is_array($input['state']) ? $input['state'] : [];
+    $expectedUpdatedAt = isset($input['expectedUpdatedAt']) && is_scalar($input['expectedUpdatedAt'])
+        ? (string) $input['expectedUpdatedAt']
+        : null;
+    $currentState = luisa_load_state();
+
+    if (
+        $currentState['updatedAt'] !== null
+        && $expectedUpdatedAt !== null
+        && $expectedUpdatedAt !== $currentState['updatedAt']
+    ) {
+        luisa_response(409, [
+            'authenticated' => true,
+            'error' => 'The shared workspace changed in another session.',
+            'state' => $currentState,
+        ]);
+    }
 
     luisa_response(200, [
         'authenticated' => true,

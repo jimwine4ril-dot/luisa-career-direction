@@ -15,7 +15,7 @@ Luisa, here is your career direction workspace:
 https://jinmi.tech/luisa-career-direction/
 
 Use this PIN when you want to open the private planning workspace.
-Luisa PIN: 1357
+PIN: send privately, not in deployable files.
 ```
 
 ## Who Can Edit?
