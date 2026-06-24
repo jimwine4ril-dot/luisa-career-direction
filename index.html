@@ -1,0 +1,670 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta
+      name="description"
+      content="A private career direction portal for Luisa, focused on clarity, next steps, and mentor-guided progress."
+    />
+    <title>Career Direction | Luisa</title>
+    <link
+      rel="icon"
+      href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Ccircle cx='32' cy='32' r='29' fill='%23e6f2ee' stroke='%230f6f59' stroke-width='4'/%3E%3Cpath d='M32 13 49 23 32 54 15 23 32 13Z' fill='none' stroke='%230f6f59' stroke-width='4' stroke-linejoin='round'/%3E%3Cpath d='M32 13v41' stroke='%230f6f59' stroke-width='4'/%3E%3C/svg%3E"
+    />
+    <link rel="stylesheet" href="styles.css" />
+  </head>
+  <body>
+    <header class="site-header">
+      <a class="brand" href="#home" aria-label="Career Direction home">
+        <span class="brand-mark" aria-hidden="true">
+          <svg viewBox="0 0 24 24" focusable="false">
+            <path d="M12 3l7 4-7 14-7-14 7-4Z" />
+            <path d="M12 3v18" />
+            <path d="M8.5 8.5 12 7l3.5 1.5" />
+          </svg>
+        </span>
+        <span>Career Direction</span>
+      </a>
+
+      <button class="menu-toggle" type="button" aria-expanded="false" aria-controls="primary-nav">
+        <span></span>
+        <span></span>
+        <span></span>
+        <span class="sr-only">Toggle navigation</span>
+      </button>
+
+      <nav id="primary-nav" class="primary-nav" aria-label="Primary navigation">
+        <a href="#home">Home</a>
+        <a href="#directions">Career Directions</a>
+        <a href="#plan">30-Day Plan</a>
+        <a href="#resources">Resources</a>
+        <a href="#mentor">Mentor Dashboard</a>
+      </nav>
+    </header>
+
+    <main id="home">
+      <section class="hero section-shell">
+        <div class="hero-copy">
+          <p class="small-line">Personal career mentoring for Luisa</p>
+          <h1>Career Direction</h1>
+          <p class="hero-subtitle">You are not behind. We are simply finding the right direction.</p>
+          <div class="hero-actions">
+            <a class="button button-primary" href="#plan">
+              Explore My Next Steps
+              <svg viewBox="0 0 24 24" aria-hidden="true">
+                <path d="M5 12h14" />
+                <path d="m13 6 6 6-6 6" />
+              </svg>
+            </a>
+            <a class="button button-quiet" href="#directions">View directions</a>
+          </div>
+        </div>
+
+        <aside class="hero-panel" aria-label="Current mentoring focus">
+          <div class="panel-heading">
+            <span class="icon-box" aria-hidden="true">
+              <svg viewBox="0 0 24 24"><path d="M12 20v-8" /><path d="M5 12a7 7 0 1 1 14 0" /><path d="M8 20h8" /></svg>
+            </span>
+            <div>
+              <h2>Current focus</h2>
+              <p>Turn a strong but scattered CV into one coherent NHS career story.</p>
+            </div>
+          </div>
+          <dl class="focus-list">
+            <div>
+              <dt>Primary question</dt>
+              <dd>Which route feels most like Luisa?</dd>
+            </div>
+            <div>
+              <dt>Next mentor check-in</dt>
+              <dd>Wednesday planning conversation</dd>
+            </div>
+            <div>
+              <dt>Target rhythm</dt>
+              <dd>3 high-quality applications per week</dd>
+            </div>
+          </dl>
+        </aside>
+      </section>
+
+      <section id="who" class="content-grid section-shell">
+        <article class="statement-card">
+          <span class="section-icon" aria-hidden="true">
+            <svg viewBox="0 0 24 24"><path d="M20 21a8 8 0 0 0-16 0" /><circle cx="12" cy="8" r="4" /></svg>
+          </span>
+          <p class="section-kicker">Who I Am</p>
+          <h2>Strong foundation. Clearer direction needed.</h2>
+          <p>
+            First-Class IBMS-accredited Biomedical Science graduate from Salford University with patient-facing
+            care, mental health support, patient administration, clinical record-handling, and project-support
+            experience. The next step is to choose the right NHS entry point and present the story clearly.
+          </p>
+        </article>
+
+        <article class="quote-card">
+          <span aria-hidden="true" class="quote-mark">"</span>
+          <blockquote>God does not waste seasons.</blockquote>
+          <p>There is enough here to build from. The work now is focus.</p>
+        </article>
+      </section>
+
+      <section class="section-shell learned-section" aria-labelledby="learned-title">
+        <div class="section-title-row">
+          <div>
+            <p class="section-kicker">What We Have Learned</p>
+            <h2 id="learned-title">The issue is not ability. The issue is direction.</h2>
+          </div>
+        </div>
+
+        <div class="lesson-grid">
+          <article class="lesson-card">
+            <span class="lesson-icon" aria-hidden="true">
+              <svg viewBox="0 0 24 24"><path d="M9 18h6" /><path d="M10 22h4" /><path d="M8.5 14.5a6 6 0 1 1 7 0c-.8.6-1.5 1.5-1.5 2.5h-4c0-1-.7-1.9-1.5-2.5Z" /></svg>
+            </span>
+            <h3>The issue is not ability.</h3>
+            <p>You have potential, discipline, and heart.</p>
+          </article>
+          <article class="lesson-card">
+            <span class="lesson-icon" aria-hidden="true">
+              <svg viewBox="0 0 24 24"><path d="m12 2 4 8-4 12-4-12 4-8Z" /><path d="m8 10 4 3 4-3" /></svg>
+            </span>
+            <h3>The issue is direction.</h3>
+            <p>The CV currently reads as science, care, admin, teaching, and project support all at once.</p>
+          </article>
+          <article class="lesson-card">
+            <span class="lesson-icon" aria-hidden="true">
+              <svg viewBox="0 0 24 24"><path d="M4 13h7" /><path d="M4 6h16" /><path d="M4 20h16" /><path d="m15 9 4 4-4 4" /></svg>
+            </span>
+            <h3>Applications must become targeted.</h3>
+            <p>We are not chasing twenty generic roles. We are choosing deliberately.</p>
+          </article>
+          <article class="lesson-card">
+            <span class="lesson-icon" aria-hidden="true">
+              <svg viewBox="0 0 24 24"><path d="M4 19.5V6a2 2 0 0 1 2-2h12v15.5" /><path d="M6 18h14" /><path d="M8 8h6" /><path d="M8 12h8" /></svg>
+            </span>
+            <h3>This is a long-term career.</h3>
+            <p>The goal is progression, not short-term relief alone.</p>
+          </article>
+        </div>
+      </section>
+
+      <section id="directions" class="section-shell directions-section" aria-labelledby="directions-title">
+        <div class="section-title-row">
+          <div>
+            <p class="section-kicker">Career Directions</p>
+            <h2 id="directions-title">Four realistic routes to explore.</h2>
+          </div>
+          <button class="text-button" type="button" data-expand-all>Expand all</button>
+        </div>
+
+        <div class="direction-list">
+          <article class="direction-card is-open">
+            <button class="direction-trigger" type="button" aria-expanded="true">
+              <span class="direction-icon" aria-hidden="true">
+                <svg viewBox="0 0 24 24"><path d="M12 3 4 20l8-4 8 4-8-17Z" /><path d="m12 3v13" /></svg>
+              </span>
+              <span>
+                <strong>Imaging &amp; Radiography</strong>
+                <small>Patient + Technology</small>
+              </span>
+              <svg class="chevron" viewBox="0 0 24 24" aria-hidden="true"><path d="m6 9 6 6 6-6" /></svg>
+            </button>
+            <div class="direction-body">
+              <p>
+                This route fits Luisa's original interest in radiography and keeps patient contact central while
+                adding technical skill. Her care, mental health, InHealth, confidentiality, and appointment
+                experience can support entry into imaging services.
+              </p>
+              <ul>
+                <li>Imaging Assistant</li>
+                <li>Radiology Assistant</li>
+                <li>Imaging Support Worker</li>
+              </ul>
+            </div>
+          </article>
+
+          <article class="direction-card">
+            <button class="direction-trigger" type="button" aria-expanded="false">
+              <span class="direction-icon" aria-hidden="true">
+                <svg viewBox="0 0 24 24"><path d="M10 2v7L4 20h16L14 9V2" /><path d="M8 2h8" /><path d="M7 15h10" /></svg>
+              </span>
+              <span>
+                <strong>Clinical Research &amp; Cancer Services</strong>
+                <small>Patient + Science + Administration</small>
+              </span>
+              <svg class="chevron" viewBox="0 0 24 24" aria-hidden="true"><path d="m6 9 6 6 6-6" /></svg>
+            </button>
+            <div class="direction-body" hidden>
+              <p>
+                This route uses the science degree, patient understanding, and administrative experience. It is
+                especially suitable where Luisa wants purpose without being limited to lab-only work. Her InHealth
+                cancer-service exposure, PAS, records, structured questioning, and project-support training matter here.
+              </p>
+              <ul>
+                <li>Clinical Research Assistant</li>
+                <li>Clinical Trials Assistant</li>
+                <li>Cancer Pathway Coordinator</li>
+              </ul>
+            </div>
+          </article>
+
+          <article class="direction-card">
+            <button class="direction-trigger" type="button" aria-expanded="false">
+              <span class="direction-icon" aria-hidden="true">
+                <svg viewBox="0 0 24 24"><path d="M9 3v5l-5 9a3 3 0 0 0 2.6 4.5h10.8A3 3 0 0 0 20 17L15 8V3" /><path d="M8 3h8" /><path d="M7.5 16h9" /></svg>
+              </span>
+              <span>
+                <strong>Healthcare Science &amp; Diagnostics</strong>
+                <small>Patient + Testing</small>
+              </span>
+              <svg class="chevron" viewBox="0 0 24 24" aria-hidden="true"><path d="m6 9 6 6 6-6" /></svg>
+            </button>
+            <div class="direction-body" hidden>
+              <p>
+                This route connects the biomedical science foundation with clinical measurement and diagnostic
+                services. It may provide patient contact without requiring a pure laboratory path and could use her
+                human physiology, pathology, microbiology, haematology, and clinical immunology modules.
+              </p>
+              <ul>
+                <li>ECG Technician</li>
+                <li>Cardiographer</li>
+                <li>Healthcare Science Assistant</li>
+                <li>Respiratory or Sleep Physiology Assistant</li>
+              </ul>
+            </div>
+          </article>
+
+          <article class="direction-card">
+            <button class="direction-trigger" type="button" aria-expanded="false">
+              <span class="direction-icon" aria-hidden="true">
+                <svg viewBox="0 0 24 24"><path d="M6 10a6 6 0 0 1 12 0v3a6 6 0 0 1-12 0v-3Z" /><path d="M9 21h6" /><path d="M12 16v5" /></svg>
+              </span>
+              <span>
+                <strong>Primary Care</strong>
+                <small>Bridge environment, not final destination</small>
+              </span>
+              <svg class="chevron" viewBox="0 0 24 24" aria-hidden="true"><path d="m6 9 6 6 6-6" /></svg>
+            </button>
+            <div class="direction-body" hidden>
+              <p>
+                Primary care can be useful as a bridge because it keeps Luisa close to patients and NHS systems.
+                It should not become the default destination unless it clearly supports the longer-term route.
+              </p>
+              <ul>
+                <li>GP Assistant</li>
+                <li>Care Coordinator</li>
+                <li>Patient Services or Pathway Support</li>
+              </ul>
+            </div>
+          </article>
+        </div>
+      </section>
+
+      <section id="plan" class="section-shell plan-section" aria-labelledby="plan-title">
+        <div class="plan-card">
+          <div class="section-title-row">
+            <div>
+              <p class="section-kicker">30 Day Plan</p>
+              <h2 id="plan-title">Move from random applications to deliberate action.</h2>
+            </div>
+            <span class="progress-label"><strong data-progress-percent>0%</strong> complete</span>
+          </div>
+
+          <div class="progress-bar" aria-hidden="true">
+            <span data-progress-bar></span>
+          </div>
+
+          <div class="week-list" data-progress-list>
+            <label class="week-item">
+              <input type="checkbox" value="week1" />
+              <span class="week-number">1</span>
+              <span>
+                <strong>Week 1</strong>
+                <small>Choose direction</small>
+              </span>
+            </label>
+            <label class="week-item">
+              <input type="checkbox" value="week2" />
+              <span class="week-number">2</span>
+              <span>
+                <strong>Week 2</strong>
+                <small>Refine CV</small>
+              </span>
+            </label>
+            <label class="week-item">
+              <input type="checkbox" value="week3" />
+              <span class="week-number">3</span>
+              <span>
+                <strong>Week 3</strong>
+                <small>Targeted applications</small>
+              </span>
+            </label>
+            <label class="week-item">
+              <input type="checkbox" value="week4" />
+              <span class="week-number">4</span>
+              <span>
+                <strong>Week 4</strong>
+                <small>Interview preparation</small>
+              </span>
+            </label>
+          </div>
+        </div>
+      </section>
+
+      <section id="resources" class="section-shell resources-section" aria-labelledby="resources-title">
+        <div class="section-title-row">
+          <div>
+            <p class="section-kicker">Resources</p>
+            <h2 id="resources-title">Tools for the next conversation.</h2>
+          </div>
+        </div>
+        <div class="resource-grid">
+          <article>
+            <h3>CV direction filter</h3>
+            <p>Use one chosen route to decide what belongs in the first third of the CV.</p>
+          </article>
+          <article>
+            <h3>STAR story bank</h3>
+            <p>Convert patient-facing experience into interview-ready evidence.</p>
+          </article>
+          <article>
+            <h3>Application tracker</h3>
+            <p>Track fewer, better applications with next follow-up dates.</p>
+          </article>
+        </div>
+      </section>
+
+      <section class="section-shell encouragement-section" aria-labelledby="encouragement-title">
+        <article class="mentor-message">
+          <p class="section-kicker">Encouragement</p>
+          <h2 id="encouragement-title">You are building something meaningful.</h2>
+          <p>
+            Stay consistent. Clarity is coming. The next step is not to prove everything at once;
+            it is to choose a direction and move toward it deliberately.
+          </p>
+          <p class="signature">- Your Mentor</p>
+        </article>
+      </section>
+
+      <section id="mentor" class="mentor-zone" aria-labelledby="mentor-title">
+        <div class="mentor-login" data-login-panel>
+          <p class="section-kicker">Private</p>
+          <h2 id="mentor-title">Mentor Login</h2>
+          <p>Enter PIN to access the mentor dashboard.</p>
+          <form class="pin-form" data-pin-form>
+            <label class="sr-only" for="mentor-pin">Mentor PIN</label>
+            <input id="mentor-pin" name="pin" inputmode="numeric" autocomplete="off" maxlength="8" placeholder="PIN" />
+            <button class="button button-primary" type="submit">Unlock Dashboard</button>
+          </form>
+          <p class="pin-status" data-pin-status role="status" aria-live="polite"></p>
+        </div>
+
+        <div class="mentor-dashboard" data-dashboard hidden>
+          <div class="mentor-dashboard-header">
+            <div>
+              <p class="section-kicker">Mentor Dashboard</p>
+              <h2>Luisa planning workspace</h2>
+            </div>
+            <button class="button button-quiet" type="button" data-lock-dashboard>Lock</button>
+          </div>
+
+          <div class="mentor-grid">
+            <article class="mentor-card wide-card baseline-card">
+              <p class="section-kicker">Wednesday Baseline</p>
+              <h3>Career triage and positioning meeting</h3>
+              <p class="mentor-lead">
+                Core diagnosis: Luisa is not underqualified. She is mispositioned. The CV contains strong ingredients,
+                but it is currently telling too many stories at once.
+              </p>
+              <blockquote>
+                Luisa is a First Class Biomedical Science graduate with strong patient-facing and administrative
+                healthcare experience, now targeting a patient-facing diagnostics, clinical research, healthcare
+                science, or imaging pathway with progression.
+              </blockquote>
+              <div class="output-grid">
+                <span>Agree primary direction</span>
+                <span>Agree backup direction</span>
+                <span>Identify exact job titles</span>
+                <span>Set four-week sprint</span>
+              </div>
+            </article>
+
+            <article class="mentor-card">
+              <h3>Opening Frame</h3>
+              <p>
+                Luisa, I have gone through your CV. My honest view is that you are not lacking experience or ability.
+                The issue is that your CV is currently carrying too many different stories.
+              </p>
+              <p>
+                Today I want us to decide which pathway we are aiming for, what roles are realistic now, and what the
+                next four weeks should look like.
+              </p>
+            </article>
+
+            <article class="mentor-card">
+              <h3>CV Snapshot</h3>
+              <ul class="question-list">
+                <li>5-page Word-exported CV dated June 2026.</li>
+                <li>First-Class Biomedical Science, IBMS-accredited programme, Salford University.</li>
+                <li>Florence carer/support worker from February 2026 to present.</li>
+                <li>InHealth Patient Care Advisor from December 2025 to April 2026.</li>
+                <li>Cygnet Lodge Mental Health Support Worker from March 2023 to September 2025.</li>
+                <li>Axcis SEN teaching assistant and Tritek PM/BA trainee add useful communication and process evidence.</li>
+                <li>Training includes lung cancer screening communication and Very Brief Advice on Smoking.</li>
+              </ul>
+            </article>
+
+            <article class="mentor-card">
+              <h3>Career Diagnosis</h3>
+              <div class="swor-grid">
+                <div>
+                  <h4>Strengths</h4>
+                  <ul>
+                    <li>First Class IBMS-accredited Biomedical Science degree</li>
+                    <li>Patient-facing care, support, and mental health experience</li>
+                    <li>InHealth patient-advisor and cancer-service exposure</li>
+                    <li>Clinical data, appointment, PAS, and confidentiality experience</li>
+                  </ul>
+                </div>
+                <div>
+                  <h4>Risks</h4>
+                  <ul>
+                    <li>CV presents too many identities at once</li>
+                    <li>Random NHS admin applications may become another cul-de-sac</li>
+                    <li>Training could become a hiding place if applications stall</li>
+                  </ul>
+                </div>
+              </div>
+            </article>
+
+            <article class="mentor-card wide-card">
+              <h3>Route Ranking</h3>
+              <div class="route-table" role="table" aria-label="Route ranking">
+                <div class="route-row route-head" role="row">
+                  <span>Rank</span>
+                  <span>Route</span>
+                  <span>Judgement</span>
+                  <span>Why</span>
+                </div>
+                <div class="route-row" role="row">
+                  <span>1</span>
+                  <strong>Imaging / Radiology</strong>
+                  <span>Best emotional fit</span>
+                  <span>Original radiography interest; patient contact, science, technology, progression, NHS identity.</span>
+                </div>
+                <div class="route-row" role="row">
+                  <span>2</span>
+                  <strong>Clinical Research / Cancer</strong>
+                  <span>Best use of existing CV</span>
+                  <span>InHealth exposure, admin, PAS, data handling, research modules, and project training all fit.</span>
+                </div>
+                <div class="route-row" role="row">
+                  <span>3</span>
+                  <strong>Healthcare Science / Physiology</strong>
+                  <span>Best compromise route</span>
+                  <span>Science plus patient contact through ECG, respiratory, sleep, audiology, or diagnostic support.</span>
+                </div>
+                <div class="route-row" role="row">
+                  <span>4</span>
+                  <strong>Biomedical Scientist / Lab</strong>
+                  <span>Available but questionable</span>
+                  <span>Possible through IBMS/portfolio route, but not main lane if she dislikes lab isolation.</span>
+                </div>
+                <div class="route-row" role="row">
+                  <span>5</span>
+                  <strong>Primary Care Bridge</strong>
+                  <span>Useful with exit plan</span>
+                  <span>Good only if it builds ECG, phlebotomy, NHS systems, referrals, cancer pathway, or clinic exposure.</span>
+                </div>
+              </div>
+              <label class="field-label" for="route-decision">Current route decision</label>
+              <select id="route-decision" data-store="luisaCareerPortal.routeDecision">
+                <option value="">Not chosen yet</option>
+                <option>Primary: Imaging / Backup: Clinical Research</option>
+                <option>Primary: Clinical Research / Backup: Healthcare Science</option>
+                <option>Primary: Healthcare Science / Backup: Imaging</option>
+                <option>Primary Care Bridge with defined 6-12 month exit plan</option>
+              </select>
+            </article>
+
+            <article class="mentor-card">
+              <h3>Exact Job Titles</h3>
+              <details open>
+                <summary>Imaging / Radiology</summary>
+                <p>Radiology Department Assistant, Imaging Assistant, Clinical Imaging Assistant, Radiography Assistant, Imaging Support Worker, MRI Assistant, CT Assistant, Ultrasound Department Assistant, Mammography Assistant, Radiology HCA, Assistant Practitioner - Imaging, Apprentice Diagnostic Radiographer.</p>
+              </details>
+              <details>
+                <summary>Clinical Research / Cancer</summary>
+                <p>Clinical Trials Assistant, Clinical Research Assistant, Research Support Worker, Assistant Clinical Research Practitioner, Clinical Studies Assistant, Clinical Studies Officer, Research Administrator, Cancer Trials Assistant, Oncology Research Assistant, Research Data Assistant, Cancer Pathway Coordinator.</p>
+              </details>
+              <details>
+                <summary>Healthcare Science / Physiology</summary>
+                <p>Healthcare Science Assistant, Assistant Technical Officer, Cardiographer, ECG Technician, Cardiac Physiology Assistant, Respiratory Physiology Assistant, Sleep Physiology Assistant, Audiology Assistant, Newborn Hearing Screener, Neurophysiology Assistant, Vascular Science Assistant, Ophthalmic Imaging Assistant.</p>
+              </details>
+            </article>
+
+            <article class="mentor-card">
+              <h3>Wednesday Questions</h3>
+              <ul class="question-list">
+                <li>Which direction feels most like the future you actually want?</li>
+                <li>If radiography took two years of retraining or apprenticeship, would you still want it?</li>
+                <li>Would you enjoy clinical trials or cancer research coordination?</li>
+                <li>Would you enjoy diagnostic tests such as ECGs, respiratory tests, sleep studies, or audiology?</li>
+                <li>Do you want lab work, or are you only considering it because of the degree?</li>
+                <li>What is non-negotiable over the next 12 months: income, location, hours, or lifestyle?</li>
+              </ul>
+            </article>
+
+            <article class="mentor-card wide-card">
+              <h3>Meeting Structure</h3>
+              <div class="meeting-structure">
+                <div><strong>First 10 min</strong><span>Wellbeing and tone: how are you actually doing?</span></div>
+                <div><strong>Next 10 min</strong><span>Reflect the CV back: the issue is not ability, it is positioning.</span></div>
+                <div><strong>Next 20 min</strong><span>Choose route: imaging, research, healthcare science, lab, or bridge.</span></div>
+                <div><strong>Next 20 min</strong><span>Build job search list: primary lane, secondary lane, bridge lane.</span></div>
+                <div><strong>Final 15 min</strong><span>Agree actions: identify 6 suitable roles and apply to 3 properly.</span></div>
+              </div>
+            </article>
+
+            <article class="mentor-card wide-card">
+              <h3>NHS Person Specification Evidence Map</h3>
+              <div class="evidence-table" role="table" aria-label="NHS person specification evidence map">
+                <div class="evidence-row evidence-head">
+                  <span>Requirement</span>
+                  <span>Evidence from Luisa</span>
+                </div>
+                <div class="evidence-row"><span>Communication</span><span>InHealth calls, vulnerable patients, SEN students, families, MDT.</span></div>
+                <div class="evidence-row"><span>Confidentiality</span><span>Patient records, Data Protection Act, IGSoC, care notes.</span></div>
+                <div class="evidence-row"><span>Patient-centred care</span><span>Florence, Cygnet, InHealth, SEN support.</span></div>
+                <div class="evidence-row"><span>Accuracy</span><span>PAS, appointment scheduling, records, incident notes.</span></div>
+                <div class="evidence-row"><span>Scientific background</span><span>First Class Biomedical Science, IBMS-accredited degree.</span></div>
+                <div class="evidence-row"><span>Research/data</span><span>Research project, translational research skills, project documentation.</span></div>
+              </div>
+            </article>
+
+            <article class="mentor-card wide-card">
+              <h3>CV Repair Plan</h3>
+              <div class="repair-grid">
+                <div>
+                  <h4>Main problems</h4>
+                  <ul>
+                    <li>Too long for her current stage.</li>
+                    <li>Profile is too generic and does not name a target route.</li>
+                    <li>Skills are duplicated and broad.</li>
+                    <li>Florence/InHealth overlap should be clarified if both were active.</li>
+                    <li>Bullets need stronger evidence of judgement, escalation, documentation, clinical teams, and prioritisation.</li>
+                  </ul>
+                </div>
+                <div>
+                  <h4>Keep visible when relevant</h4>
+                  <ul>
+                    <li>Clinical Immunology, Cell Pathology, Medical/Public Health Microbiology.</li>
+                    <li>Clinical and Molecular Genetics, Haematology and Transfusion, Human Physiology.</li>
+                    <li>Pathophysiology, Research Project, Translational Research Skills.</li>
+                    <li>PAS, clinical record-keeping, IGSoC, GDPR, appointment scheduling, audit/reporting.</li>
+                  </ul>
+                </div>
+              </div>
+              <div class="profile-stack">
+                <details open>
+                  <summary>Imaging / Radiology CV profile</summary>
+                  <p>First Class Biomedical Science graduate from an IBMS-accredited programme, with multi-year patient-facing experience across mental health support, adult care, SEN education, and patient administration within a private cancer service. Experienced in communicating with vulnerable or anxious individuals, maintaining accurate clinical records, coordinating appointments, working with multidisciplinary teams, and upholding confidentiality and safeguarding standards. Now seeking to build a long-term patient-facing NHS career in imaging, diagnostics, or healthcare science.</p>
+                </details>
+                <details>
+                  <summary>Clinical Research CV profile</summary>
+                  <p>First Class Biomedical Science graduate with patient-facing healthcare experience, private cancer-service exposure, strong administrative accuracy, and project-support training. Experienced in appointment coordination, patient communication, clinical data handling, confidentiality, structured questioning, MDT communication, and record-keeping. Seeking to develop a career in clinical research, trials support, or cancer pathway services, combining scientific understanding with patient support and high-quality research administration.</p>
+                </details>
+                <details>
+                  <summary>Healthcare Science CV profile</summary>
+                  <p>First Class Biomedical Science graduate with strong interest in patient-facing diagnostics and healthcare science. Brings experience supporting adults with complex care, mental health and learning disability needs, alongside patient administration, clinical record-keeping, confidentiality, and multidisciplinary communication. Seeking an entry-level healthcare science, physiological sciences, or assistant technical role with structured progression.</p>
+                </details>
+              </div>
+            </article>
+
+            <article class="mentor-card">
+              <h3>STAR Evidence Bank</h3>
+              <ol class="star-bank">
+                <li>De-escalating a distressed patient or service user.</li>
+                <li>Handling confidential patient information accurately.</li>
+                <li>Managing a high-volume workload.</li>
+                <li>Coordinating appointments or patient pathways.</li>
+                <li>Working with an MDT.</li>
+                <li>Escalating safeguarding or risk concerns.</li>
+                <li>Adapting communication to a vulnerable person.</li>
+                <li>Using scientific knowledge to understand patient care.</li>
+                <li>Supporting process improvement or project documentation.</li>
+              </ol>
+              <textarea data-store="luisaCareerPortal.starBuilder" rows="6">Build 10 examples here. For each: Situation, Task, Action, Result, NHS value/person-spec link.</textarea>
+            </article>
+
+            <article class="mentor-card">
+              <h3>What Not To Let Her Do</h3>
+              <ul class="question-list">
+                <li>Do not apply for random NHS admin jobs just to get into the NHS.</li>
+                <li>Do not send the same CV everywhere.</li>
+                <li>Do not apply for Band 5 Biomedical Scientist roles unless trainees or portfolio completion are supported.</li>
+                <li>Do not take another low-progression care role unless it gives specific clinical skills or NHS systems exposure.</li>
+                <li>Do not overtrain before applying. Applications come first.</li>
+              </ul>
+            </article>
+
+            <article class="mentor-card wide-card">
+              <h3>Application Tracker</h3>
+              <div class="application-table" role="group" aria-label="Application tracker">
+                <div class="application-row application-head">
+                  <span>Role</span>
+                  <span>Organisation</span>
+                  <span>Status</span>
+                  <span>Next step</span>
+                </div>
+                <div class="application-row" data-application-row>
+                  <input aria-label="Role 1" value="Imaging Assistant" />
+                  <input aria-label="Organisation 1" value="NHS Trust" />
+                  <select aria-label="Status 1">
+                    <option>Researching</option>
+                    <option selected>Preparing CV</option>
+                    <option>Applied</option>
+                    <option>Interview</option>
+                  </select>
+                  <input aria-label="Next step 1" value="Tailor CV evidence" />
+                </div>
+                <div class="application-row" data-application-row>
+                  <input aria-label="Role 2" value="Clinical Research Assistant" />
+                  <input aria-label="Organisation 2" value="Cancer services" />
+                  <select aria-label="Status 2">
+                    <option selected>Researching</option>
+                    <option>Preparing CV</option>
+                    <option>Applied</option>
+                    <option>Interview</option>
+                  </select>
+                  <input aria-label="Next step 2" value="Map person spec evidence" />
+                </div>
+              </div>
+              <p class="save-status" data-save-status role="status" aria-live="polite"></p>
+            </article>
+
+            <article class="mentor-card">
+              <h3>Weekly Review Tracker</h3>
+              <textarea data-store="luisaCareerPortal.weeklyReviews" rows="8">Week 1: Wednesday call. Agree primary lane and backup lane. Rewrite CV into two versions. Set NHS Jobs alerts.
+Week 2: Pick six vacancies. Apply to three properly. Contact named contacts where appropriate.
+Week 3: Review outcomes. If no interviews, supporting statement is not scoring. Apply to another three to five roles.
+Week 4: Prepare interview answers for motivation, confidentiality, safeguarding, prioritising, MDT work, feedback, and EDI.</textarea>
+            </article>
+
+            <article class="mentor-card">
+              <h3>Mentor Notes</h3>
+              <textarea data-store="luisaCareerPortal.notes" rows="8">Guiding sentence: Your problem is not a lack of ability. Your problem is that your experience is currently pointing in several directions at once. Our task is to identify the right one and move toward it deliberately.</textarea>
+            </article>
+          </div>
+        </div>
+      </section>
+    </main>
+
+    <footer class="site-footer">
+      <p>Career Direction for Luisa. Built for clarity, direction, and deliberate next steps.</p>
+    </footer>
+
+    <script src="app.js"></script>
+  </body>
+</html>
