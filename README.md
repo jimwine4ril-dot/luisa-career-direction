@@ -1,6 +1,6 @@
 # Luisa Career Direction Portal
 
-Mobile-first career mentoring portal for Luisa with a Hostinger-friendly PHP backend for shared online edits.
+Mobile-first career direction workspace for Luisa with a Hostinger-friendly PHP backend for shared online edits.
 
 ## Files
 
@@ -41,13 +41,13 @@ http://127.0.0.1:5050
 
 ## Private Access
 
-Default PIN:
+Default shared PIN:
 
 ```text
 2468
 ```
 
-When hosted with PHP, the PIN is checked server-side by `api/auth.php`. Change the PIN hash in `api/config.php` before sending the live link if this will contain sensitive notes.
+When hosted with PHP, the shared PIN is checked server-side by `api/auth.php`. Change the PIN hash in `api/config.php` before sending the live link if this will contain sensitive notes.
 
 For local static preview without PHP, the app falls back to local browser-only saves and the demo PIN.
 

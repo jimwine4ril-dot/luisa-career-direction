@@ -14,17 +14,15 @@ Then share:
 Luisa, here is your career direction workspace:
 https://jinmi.tech/luisa-career-direction/
 
-Use the PIN if you need to update the planning workspace.
+Use this shared PIN when you want to open the private planning workspace.
 PIN: 2468
 ```
 
 ## Who Can Edit?
 
-Anyone with the PIN can edit the online workspace.
+You and Luisa use the same PIN. Anyone with the PIN can edit the online workspace.
 
-If only Jinmi should edit, do not share the PIN. Luisa can still view the public-facing page.
-
-If Luisa should update applications, STAR notes, weekly reviews, or route decisions herself, share the PIN with her.
+Share the PIN if you want Luisa to update applications, STAR notes, weekly reviews, or route decisions herself.
 
 ## Hostinger Upload
 
