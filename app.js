@@ -1,7 +1,7 @@
 (function () {
   "use strict";
 
-  const FALLBACK_PIN = "2468";
+  const FALLBACK_PINS = ["2468", "1357"];
   const STORAGE_PREFIX = "luisaCareerPortal.";
   const API_STATE_URL = "api/state.php";
   const API_AUTH_URL = "api/auth.php";
@@ -338,7 +338,7 @@
       }
     }
 
-    if (pin === FALLBACK_PIN) {
+    if (FALLBACK_PINS.includes(pin)) {
       setDashboardVisible(true);
       dashboard?.scrollIntoView({ behavior: "smooth", block: "start" });
       flashSaved("Backend unavailable. Saved locally on this browser.");

@@ -41,15 +41,16 @@ http://127.0.0.1:5050
 
 ## Private Access
 
-Default shared PIN:
+Default PINs:
 
 ```text
-2468
+Jinmi: 2468
+Luisa: 1357
 ```
 
-When hosted with PHP, the shared PIN is checked server-side by `api/auth.php`. Change the PIN hash in `api/config.php` before sending the live link if this will contain sensitive notes.
+When hosted with PHP, each PIN is checked server-side by `api/auth.php`. Change the PIN hashes in `api/config.php` before sending the live link if this will contain sensitive notes.
 
-For local static preview without PHP, the app falls back to local browser-only saves and the demo PIN.
+For local static preview without PHP, the app falls back to local browser-only saves and the default PINs.
 
 ## Shared Online Editing
 
@@ -63,7 +64,7 @@ When uploaded to Hostinger with PHP enabled:
 
 ### Change The PIN
 
-The default PIN hash is calculated as:
+Each default PIN hash is calculated as:
 
 ```text
 sha256(PIN + pin_salt)
@@ -73,7 +74,7 @@ To change it:
 
 1. Pick a new PIN.
 2. Calculate the SHA-256 hash of `NEW_PIN` followed immediately by the `pin_salt` in `api/config.php`.
-3. Replace `pin_hash` in `api/config.php`.
+3. Replace the relevant entry in `pin_hashes` in `api/config.php`.
 
 Example for PIN `2468` and salt `luisa-career-direction-2026`:
 

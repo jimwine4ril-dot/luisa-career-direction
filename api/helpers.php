@@ -28,6 +28,7 @@ function luisa_config(): array
     return array_merge([
         'pin_salt' => '',
         'pin_hash' => '',
+        'pin_hashes' => [],
         'state_file' => dirname(__DIR__) . '/data/luisa-career-state.json',
     ], is_array($config) ? $config : []);
 }
@@ -171,6 +172,13 @@ function luisa_verify_pin(string $pin): bool
 {
     $config = luisa_config();
     $hash = hash('sha256', $pin . $config['pin_salt']);
+    $hashes = is_array($config['pin_hashes']) ? $config['pin_hashes'] : [];
+
+    foreach ($hashes as $storedHash) {
+        if (hash_equals((string) $storedHash, $hash)) {
+            return true;
+        }
+    }
 
     return hash_equals((string) $config['pin_hash'], $hash);
 }
