@@ -23,13 +23,14 @@ trap 'rm -f "${BATCH_FILE}"' EXIT
 cat > "${BATCH_FILE}" <<SFTP
 mkdir ${HOSTINGER_REMOTE_DIR}
 cd ${HOSTINGER_REMOTE_DIR}
-rm README.md
-rm SHARE.md
-rm AGENTS.md
-rm ARCHITECTURE.md
-rm PROJECT_OVERVIEW.md
-rm PROJECT_PRINCIPLES.md
-rm ROADMAP.md
+-rm .gitignore
+-rm README.md
+-rm SHARE.md
+-rm AGENTS.md
+-rm ARCHITECTURE.md
+-rm PROJECT_OVERVIEW.md
+-rm PROJECT_PRINCIPLES.md
+-rm ROADMAP.md
 put ${BUILD_DIR}/index.html index.html
 put ${BUILD_DIR}/styles.css styles.css
 put ${BUILD_DIR}/app.js app.js
