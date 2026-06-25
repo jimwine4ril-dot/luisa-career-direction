@@ -3,8 +3,8 @@
 return [
     'pin_salt' => 'luisa-career-direction-2026',
     'pin_hashes' => [
-        'jinmi' => '96c948e1d416f509c9475fc0fe10fcf50a97c0182c9dd910f9884defcb6c7c28',
-        'luisa' => 'c0c873e0f54057ce32c494603eb14cf1791739a31b9f8ffb31e76df9394be9ae',
+        'jinmi' => '4809cbfe1647e8784babd13dfba6024b911a4d6bf60f918bb039db8082547749',
+        'luisa' => '69a79a59bb480230f4f216c000b90cbb113a8a8324a5396fd1163c780904e1d2',
     ],
     'state_file' => dirname(__DIR__) . '/data/luisa-career-state.json',
 ];
