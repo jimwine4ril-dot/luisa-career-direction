@@ -21,6 +21,7 @@ BATCH_FILE="$(mktemp)"
 trap 'rm -f "${BATCH_FILE}"' EXIT
 
 cat > "${BATCH_FILE}" <<SFTP
+lcd "${BUILD_DIR}"
 -mkdir ${HOSTINGER_REMOTE_DIR}
 cd ${HOSTINGER_REMOTE_DIR}
 -rm .gitignore
@@ -31,22 +32,22 @@ cd ${HOSTINGER_REMOTE_DIR}
 -rm PROJECT_OVERVIEW.md
 -rm PROJECT_PRINCIPLES.md
 -rm ROADMAP.md
-put ${BUILD_DIR}/index.html index.html
-put ${BUILD_DIR}/styles.css styles.css
-put ${BUILD_DIR}/app.js app.js
-put ${BUILD_DIR}/.htaccess .htaccess
+put index.html index.html
+put styles.css styles.css
+put app.js app.js
+put .htaccess .htaccess
 -mkdir api
 cd api
-put ${BUILD_DIR}/api/auth.php auth.php
-put ${BUILD_DIR}/api/config.php config.php
-put ${BUILD_DIR}/api/dashboard.php dashboard.php
-put ${BUILD_DIR}/api/helpers.php helpers.php
-put ${BUILD_DIR}/api/state.php state.php
+put api/auth.php auth.php
+put api/config.php config.php
+put api/dashboard.php dashboard.php
+put api/helpers.php helpers.php
+put api/state.php state.php
 cd ..
 -mkdir data
 cd data
-put ${BUILD_DIR}/data/.htaccess .htaccess
-put ${BUILD_DIR}/data/.gitkeep .gitkeep
+put data/.htaccess .htaccess
+put data/.gitkeep .gitkeep
 cd ..
 ls
 SFTP
