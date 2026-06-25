@@ -3,3 +3,5 @@ data/*.tmp
 *.zip
 .DS_Store
 luisa-career-direction-hostinger/
+build/
+.hostinger.env

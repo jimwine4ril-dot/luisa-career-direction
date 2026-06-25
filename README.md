@@ -78,12 +78,38 @@ Example hash shape:
 
 ## Hostinger Deployment
 
-Upload the contents of this folder to the Hostinger target directory:
+Build the runtime-only package:
 
-- Main site: upload all files and folders into `public_html`.
-- Subfolder: upload all files and folders into a folder such as `public_html/luisa-career-direction`.
+```bash
+./scripts/hostinger-package.sh
+```
 
-No build step is required.
+This creates:
+
+- `build/hostinger-runtime/`
+- `build/luisa-career-direction-hostinger.zip`
+
+Manual hPanel upload:
+
+1. Open Hostinger File Manager.
+2. Go to `public_html/luisa-career-direction`.
+3. Delete stale public docs if present: `README.md`, `SHARE.md`, `AGENTS.md`, `ARCHITECTURE.md`, `PROJECT_OVERVIEW.md`, `PROJECT_PRINCIPLES.md`, `ROADMAP.md`.
+4. Upload/extract `build/luisa-career-direction-hostinger.zip`.
+5. Do not delete `data/luisa-career-state.json` if it already exists.
+
+SFTP upload:
+
+```bash
+cp .hostinger.env.example .hostinger.env
+# Fill .hostinger.env from Hostinger hPanel SSH/SFTP details.
+./scripts/hostinger-deploy-sftp.sh
+```
+
+Target folder for the live URL:
+
+```text
+public_html/luisa-career-direction
+```
 
 ## Local Data
 
