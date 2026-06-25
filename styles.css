@@ -299,6 +299,13 @@ h1 {
   transition-duration: 80ms;
 }
 
+.button:disabled {
+  cursor: wait;
+  opacity: 0.7;
+  transform: none;
+  box-shadow: none;
+}
+
 .button-primary {
   border-color: var(--primary);
   background: var(--primary);

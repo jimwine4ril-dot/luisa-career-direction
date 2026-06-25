@@ -334,6 +334,13 @@
 
   const pinForm = document.querySelector("[data-pin-form]");
   const pinStatus = document.querySelector("[data-pin-status]");
+  const pinButton = pinForm?.querySelector("button[type='submit']");
+
+  function setPinBusy(isBusy) {
+    if (!pinButton) return;
+    pinButton.disabled = isBusy;
+    pinButton.textContent = isBusy ? "Opening..." : "Open workspace";
+  }
 
   async function authenticateOnline(pin) {
     const result = await fetchJSON(API_AUTH_URL, {
@@ -381,8 +388,9 @@
     const form = new FormData(pinForm);
     const pin = String(form.get("pin") || "").trim();
 
-    pinStatus.textContent = "";
+    pinStatus.textContent = "Opening workspace...";
     pinStatus.classList.remove("error");
+    setPinBusy(true);
 
     try {
       await authenticateOnline(pin);
@@ -409,6 +417,8 @@
       // Backend unavailable: stay locked, no fallback
       pinStatus.textContent = "Workspace is offline. Try again later.";
       pinStatus.classList.add("error");
+    } finally {
+      setPinBusy(false);
     }
   });
 
