@@ -337,6 +337,7 @@
   const pinButton = pinForm?.querySelector("button[type='submit']");
 
   function setPinBusy(isBusy) {
+    pinForm?.setAttribute("aria-busy", String(isBusy));
     if (!pinButton) return;
     pinButton.disabled = isBusy;
     pinButton.textContent = isBusy ? "Opening..." : "Open workspace";
@@ -397,6 +398,7 @@
       // Successful auth resets counter
       attemptCount = 0;
       lockedUntil = 0;
+      pinStatus.textContent = "Workspace opened.";
       return;
     } catch (error) {
       if (backendAvailable) {

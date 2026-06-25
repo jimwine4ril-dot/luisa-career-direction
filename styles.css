@@ -93,6 +93,35 @@ svg {
   border: 0;
 }
 
+.skip-link {
+  position: fixed;
+  top: 0.75rem;
+  left: 0.75rem;
+  z-index: 100;
+  border-radius: var(--radius-sm);
+  padding: 0.65rem 0.85rem;
+  background: var(--ink);
+  color: #ffffff;
+  font-weight: 700;
+  transform: translateY(-150%);
+  transition: transform 150ms var(--ease-out);
+}
+
+.skip-link:focus {
+  transform: translateY(0);
+  outline: 3px solid var(--gold);
+  outline-offset: 2px;
+}
+
+a:focus-visible,
+button:focus-visible,
+input:focus-visible,
+select:focus-visible,
+textarea:focus-visible {
+  outline: 3px solid rgba(180, 132, 45, 0.42);
+  outline-offset: 3px;
+}
+
 /* ── Header ─────────────────────────────────────── */
 .site-header {
   position: sticky;
@@ -129,7 +158,7 @@ svg {
   font-family: 'Outfit', sans-serif;
   font-size: 1.05rem;
   font-weight: 700;
-  letter-spacing: -0.01em;
+  letter-spacing: 0;
 }
 
 .brand-mark,
@@ -168,7 +197,6 @@ svg {
 .primary-nav a:focus-visible {
   color: var(--primary);
   background: var(--primary-soft);
-  outline: none;
 }
 
 .menu-toggle {
@@ -206,8 +234,8 @@ svg {
   grid-template-columns: minmax(0, 1fr) minmax(280px, 0.44fr);
   gap: clamp(1.5rem, 5vw, 4rem);
   align-items: center;
-  min-height: calc(100dvh - 68px);
-  padding: clamp(3rem, 8vw, 6rem) 0 clamp(2rem, 5vw, 4rem);
+  min-height: min(780px, calc(88dvh - 68px));
+  padding: clamp(2.8rem, 7vw, 5rem) 0 clamp(2rem, 5vw, 3.4rem);
 }
 
 .hero-copy {
@@ -234,7 +262,7 @@ svg {
   color: var(--primary);
   font-size: 0.74rem;
   font-weight: 800;
-  letter-spacing: 0.1em;
+  letter-spacing: 0;
   text-transform: uppercase;
 }
 
@@ -250,9 +278,9 @@ h1 {
   margin: 0;
   max-width: 700px;
   font-family: 'Outfit', sans-serif;
-  font-size: clamp(2.8rem, 7vw, 5.5rem);
+  font-size: 4.8rem;
   font-weight: 700;
-  letter-spacing: -0.03em;
+  letter-spacing: 0;
   line-height: 0.95;
 }
 
@@ -260,7 +288,7 @@ h1 {
   max-width: 560px;
   margin: 1.3rem 0 0;
   color: #344039;
-  font-size: clamp(1.05rem, 2.2vw, 1.28rem);
+  font-size: 1.18rem;
   font-weight: 400;
   line-height: 1.55;
 }
@@ -269,6 +297,34 @@ h1 {
   flex-wrap: wrap;
   gap: 0.75rem;
   margin-top: 2rem;
+}
+
+.hero-checks {
+  display: grid;
+  gap: 0.55rem;
+  max-width: 640px;
+  margin: 1.4rem 0 0;
+  padding: 0;
+  list-style: none;
+}
+
+.hero-checks li {
+  position: relative;
+  padding-left: 1.65rem;
+  color: var(--muted);
+  line-height: 1.55;
+}
+
+.hero-checks li::before {
+  content: "";
+  position: absolute;
+  top: 0.55rem;
+  left: 0.25rem;
+  width: 0.42rem;
+  height: 0.42rem;
+  border-radius: 50%;
+  background: var(--gold);
+  box-shadow: 0 0 0 0.28rem var(--gold-soft);
 }
 
 /* ── Buttons ─────────────────────────────────────── */
@@ -411,7 +467,7 @@ h1 {
 .focus-list dt {
   font-size: 0.72rem;
   font-weight: 800;
-  letter-spacing: 0.07em;
+  letter-spacing: 0;
   text-transform: uppercase;
 }
 
@@ -447,9 +503,9 @@ h1 {
 .mentor-dashboard h2 {
   margin: 0;
   font-family: 'Outfit', sans-serif;
-  font-size: clamp(1.8rem, 4vw, 3rem);
+  font-size: 2.4rem;
   font-weight: 700;
-  letter-spacing: -0.02em;
+  letter-spacing: 0;
   line-height: 1.05;
 }
 
@@ -476,7 +532,7 @@ h1 {
 
 .quote-card blockquote {
   margin: 0;
-  font-size: clamp(1.55rem, 3.5vw, 2.3rem);
+  font-size: 2rem;
   font-style: italic;
   line-height: 1.15;
 }
@@ -504,9 +560,9 @@ h1 {
 .next-section h2 {
   margin: 0;
   font-family: 'Outfit', sans-serif;
-  font-size: clamp(2rem, 5vw, 3.5rem);
+  font-size: 2.8rem;
   font-weight: 700;
-  letter-spacing: -0.025em;
+  letter-spacing: 0;
   line-height: 1.04;
 }
 
@@ -660,7 +716,6 @@ h1 {
 .direction-trigger:hover,
 .direction-trigger:focus-visible {
   background: var(--surface-strong);
-  outline: none;
 }
 
 .direction-trigger:active {
@@ -878,6 +933,11 @@ h1 {
   gap: 0.7rem;
 }
 
+.pin-label {
+  color: var(--ink);
+  font-weight: 700;
+}
+
 .pin-form input,
 .mentor-card textarea,
 .mentor-card select,
@@ -905,6 +965,13 @@ h1 {
   min-height: 1.4rem;
   margin-bottom: 0;
   font-size: 0.88rem;
+}
+
+.pin-help {
+  margin: 0.75rem 0 0;
+  color: var(--muted);
+  font-size: 0.9rem;
+  line-height: 1.55;
 }
 
 .pin-status.error {
@@ -996,9 +1063,9 @@ h1 {
 
 .baseline-card h3 {
   font-family: 'Outfit', sans-serif;
-  font-size: clamp(1.5rem, 2.8vw, 2.2rem);
+  font-size: 1.85rem;
   font-weight: 700;
-  letter-spacing: -0.02em;
+  letter-spacing: 0;
   line-height: 1.06;
 }
 
@@ -1079,7 +1146,7 @@ h1 {
   color: var(--muted);
   font-size: 0.8rem;
   font-weight: 800;
-  letter-spacing: 0.04em;
+  letter-spacing: 0;
   text-transform: uppercase;
 }
 
@@ -1156,7 +1223,7 @@ h1 {
   color: var(--muted);
   font-size: 0.74rem;
   font-weight: 800;
-  letter-spacing: 0.05em;
+  letter-spacing: 0;
   text-transform: uppercase;
 }
 
@@ -1255,7 +1322,7 @@ h1 {
   color: var(--muted);
   font-size: 0.78rem;
   font-weight: 800;
-  letter-spacing: 0.05em;
+  letter-spacing: 0;
   text-transform: uppercase;
 }
 
@@ -1289,6 +1356,19 @@ h1 {
   .hero,
   .welcome-hero {
     min-height: auto;
+  }
+
+  h1 {
+    font-size: 3.8rem;
+  }
+
+  .simple-heading h2,
+  .next-section h2,
+  .statement-card h2,
+  .section-title-row h2,
+  .mentor-message h2,
+  .mentor-dashboard h2 {
+    font-size: 2.2rem;
   }
 
   .lesson-grid,
@@ -1346,7 +1426,7 @@ h1 {
   }
 
   h1 {
-    font-size: clamp(2.6rem, 14vw, 4rem);
+    font-size: 3.1rem;
   }
 
   .section-title-row,
@@ -1408,6 +1488,10 @@ h1 {
 
   .brand {
     font-size: 1rem;
+  }
+
+  h1 {
+    font-size: 2.55rem;
   }
 
   .hero-actions .button-quiet {

@@ -7,7 +7,7 @@
       name="description"
       content="A private career direction workspace for Luisa, focused on clarity and practical next steps."
     />
-    <title>Career Direction | Luisa</title>
+    <title>Direction OS | Luisa</title>
     <link
       rel="icon"
       href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Ccircle cx='32' cy='32' r='29' fill='%23e6f2ee' stroke='%230f6f59' stroke-width='4'/%3E%3Cpath d='M32 13 49 23 32 54 15 23 32 13Z' fill='none' stroke='%230f6f59' stroke-width='4' stroke-linejoin='round'/%3E%3Cpath d='M32 13v41' stroke='%230f6f59' stroke-width='4'/%3E%3C/svg%3E"
@@ -18,8 +18,9 @@
     <link rel="stylesheet" href="styles.css" />
   </head>
   <body>
+    <a class="skip-link" href="#workspace">Skip to private workspace</a>
     <header class="site-header">
-      <a class="brand" href="#home" aria-label="Career Direction home">
+      <a class="brand" href="#home" aria-label="Direction OS home">
         <span class="brand-mark" aria-hidden="true">
           <svg viewBox="0 0 24 24" focusable="false">
             <path d="M12 3l7 4-7 14-7-14 7-4Z" />
@@ -27,7 +28,7 @@
             <path d="M8.5 8.5 12 7l3.5 1.5" />
           </svg>
         </span>
-        <span>Career Direction</span>
+        <span>Direction OS</span>
       </a>
 
       <button class="menu-toggle" type="button" aria-expanded="false" aria-controls="primary-nav">
@@ -47,14 +48,20 @@
     <main id="home">
       <section class="welcome-hero section-shell">
         <div class="hero-copy">
-          <h1>Your direction starts here.</h1>
+          <p class="small-line">Luisa, this is for you</p>
+          <h1>Let's make the next step clear.</h1>
           <p class="hero-subtitle">
-            This is your private space, Luisa — built to turn your experience into a clear career path, one step at a time.
+            I made this as a calm place for us to organise your career direction without rushing the decision.
           </p>
           <p class="welcome-note">
-            You don't need to understand everything today. The purpose is simple: see the current picture clearly,
-            choose the most realistic direction, and take the next few steps deliberately.
+            You do not need to work everything out today. We just need to understand where you are,
+            choose the most realistic lane, and leave with a practical next step.
           </p>
+          <ul class="hero-checks" aria-label="What we will focus on">
+            <li>Understand what your experience already shows</li>
+            <li>Choose one main career lane to test properly</li>
+            <li>Turn the decision into CV, applications, and interview evidence</li>
+          </ul>
           <div class="hero-actions">
             <a class="button button-primary" href="#how-it-works">
               Start here
@@ -67,28 +74,28 @@
           </div>
         </div>
 
-        <aside class="hero-panel gentle-panel" aria-label="Reassurance">
+        <aside class="hero-panel gentle-panel" aria-label="How to use this page">
           <div class="panel-heading">
             <span class="icon-box" aria-hidden="true">
               <svg viewBox="0 0 24 24"><path d="M20 6 9 17l-5-5" /></svg>
             </span>
             <div>
-              <h2>What this is not</h2>
-              <p>This is not a test, not a judgement, and not a rush.</p>
+              <h2>What this is</h2>
+              <p>A shared workspace for one clear conversation, not a test.</p>
             </div>
           </div>
           <dl class="focus-list">
             <div>
-              <dt>Today</dt>
-              <dd>Understand the picture calmly.</dd>
+              <dt>Start</dt>
+              <dd>Read the page calmly.</dd>
             </div>
             <div>
-              <dt>Next</dt>
-              <dd>Choose one direction to explore properly.</dd>
+              <dt>Then</dt>
+              <dd>Open the private workspace with your PIN.</dd>
             </div>
             <div>
-              <dt>After that</dt>
-              <dd>Apply with a CV that tells one clear story.</dd>
+              <dt>Together</dt>
+              <dd>We use the notes to decide what to do next.</dd>
             </div>
           </dl>
         </aside>
@@ -99,7 +106,7 @@
           <h2 id="how-title">What this page does</h2>
           <p>
             It gives you one calm place to organise your career direction. It is not asking you to make every decision
-            immediately. It simply helps the next step become clear and practical.
+            immediately. It helps us see the picture clearly and make the next step practical.
           </p>
         </div>
 
@@ -107,27 +114,27 @@
           <article>
             <span>1</span>
             <h3>Understand where you are</h3>
-            <p>We bring together your degree, experience, strengths, and the kind of work that actually fits.</p>
+            <p>We bring together your degree, experience, strengths, and what kind of work may actually fit.</p>
           </article>
           <article>
             <span>2</span>
-            <h3>Choose your direction</h3>
-            <p>We compare realistic routes and pick one main lane, with a backup if needed.</p>
+            <h3>Choose the main lane</h3>
+            <p>We compare realistic routes and pick one direction to test properly, with a backup if needed.</p>
           </article>
           <article>
             <span>3</span>
-            <h3>Take the next steps</h3>
-            <p>We adjust the CV, choose better applications, and prepare clear interview examples.</p>
+            <h3>Move with a plan</h3>
+            <p>We adjust the CV, choose better applications, and prepare interview examples that match the lane.</p>
           </article>
         </div>
       </section>
 
       <section class="section-shell next-section" aria-labelledby="next-title">
-        <h2 id="next-title">What will happen next</h2>
+        <h2 id="next-title">How we will use it</h2>
         <div class="next-list">
           <p><strong>First,</strong> we will talk through what feels realistic and what does not.</p>
-          <p><strong>Then,</strong> we will choose which career route deserves focused attention.</p>
-          <p><strong>After that,</strong> your private workspace will track applications, CV changes, and interview evidence.</p>
+          <p><strong>Then,</strong> we will choose the route that deserves focused attention first.</p>
+          <p><strong>After that,</strong> the private workspace will track applications, CV changes, and interview evidence.</p>
         </div>
       </section>
 
@@ -136,13 +143,14 @@
         <div class="mentor-login" data-login-panel>
           <p class="section-kicker">Private</p>
           <h2 id="workspace-title">Your private workspace</h2>
-          <p>This is where your detailed planning lives. You and Jinmi each have a PIN to open it.</p>
+          <p>This is where the detailed planning lives. You and Jinmi each have a PIN to open it.</p>
           <form class="pin-form" data-pin-form>
-            <label class="sr-only" for="mentor-pin">Workspace PIN</label>
-            <input id="mentor-pin" name="pin" type="password" inputmode="numeric" autocomplete="new-password" maxlength="8" placeholder="Enter PIN" />
+            <label class="pin-label" for="mentor-pin">Workspace PIN</label>
+            <input id="mentor-pin" name="pin" type="password" inputmode="numeric" autocomplete="one-time-code" maxlength="8" placeholder="Enter PIN" aria-describedby="mentor-pin-help" />
             <button class="button button-primary" type="submit">Open workspace</button>
           </form>
-          <p class="pin-status" data-pin-status role="status" aria-live="polite"></p>
+          <p id="mentor-pin-help" class="pin-help">After the PIN is accepted, the private workspace opens below this box.</p>
+          <p class="pin-status" data-pin-status role="status" aria-live="polite" aria-atomic="true"></p>
         </div>
         <!-- Dashboard placeholder: app.js injects content here after server authentication -->
         <div id="dashboard-mount" hidden></div>
@@ -153,6 +161,6 @@
       <p>Built for you &mdash; with clarity and care.</p>
     </footer>
 
-    <script src="app.js?v=20260625-2"></script>
+    <script src="app.js?v=20260625-3"></script>
   </body>
 </html>
